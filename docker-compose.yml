@@ -1,29 +1,29 @@
-version: '3.8'  # Use the latest version in the 3.x series for compatibility
+version: '3.8'  
 
 services:
   react-app:
-    stdin_open: true   # Keeps the container interactive
-    tty: true          # Enables hot reloading and interactivity
+    stdin_open: true   
+    tty: true          
     environment:
-      - CHOKIDAR_USEPOLLING=true  # Helps in detecting file changes when mounted
+      - CHOKIDAR_USEPOLLING=true  
     build:
-      context: .       # Build context is the current directory
+      context: .       
       dockerfile: Dockerfile.dev
     ports:
-      - "3000:3000"  # Maps port 3000 of the container to port 3000 on the host
+      - "3000:3000"  
     volumes:
-      - /app/node_modules  # Prevents overwriting node_modules in the container
-      - .:/app             # Mounts the project directory into the container
+      - /app/node_modules  
+      - .:/app             
 
   react-test:
-    stdin_open: true   # Keeps the container interactive
+    stdin_open: true   
     build:
-      context: .       # Build context is the current directory
+      context: .       
       dockerfile: Dockerfile.dev
     volumes:
-      - /app/node_modules  # Prevents overwriting node_modules in the container
-      - .:/app             # Mounts the project directory into the container
-    command: ["npm", "test"]  # Runs tests in watch mode
+      - /app/node_modules  
+      - .:/app             
+    command: ["npm", "test"]  
 
 
 
